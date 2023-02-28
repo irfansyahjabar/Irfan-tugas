@@ -1,0 +1,56 @@
+# NIM = D [0,2,2,1,0,6,4]
+
+data = []
+n = int(input("\nInput Jumlah Data! : "))
+
+for i in range(n):
+    a = int(input("Masukkan data!\t\t : "))
+    data.append(a)
+print()
+print("Nilai Deret Yang Diinput\t : ", data)
+
+#nilai mean
+def getMean():
+    jumlah_data = 0
+    # Menjumlahkan Data Yang Ada Didalam List
+    for item in data:
+        jumlah_data += item
+
+    mean = jumlah_data / n
+    print("\nNilai Mean Adalah\t\t : ", format(mean, '.1f'))
+
+#nilai median
+def getMedian():
+    # Mengurutkan data dari yang terkeci ke terbesar
+    for i in range(n):
+        for j in range(n-i-1):
+            if data[j] > data[j+1]:
+                data[j], data[j+1] = data[j+1], data[j]
+
+    urutan = data
+    print("\nNilai Deret Setelah Diurutkan\t : ", urutan)
+    if n % 2 == 0:
+        median = ((n//2)+(n//2)+1) / 2
+    else:
+        median = urutan[n//2]
+
+    print("\nNilai Median Adalah\t\t : ", median)
+
+#nilai modus
+def getModus():
+    jumlah_kemunculan_nilai = 0
+
+    for i in range(0, n):
+        temp = data.count(data[i])
+
+        if temp > jumlah_kemunculan_nilai:
+            jumlah_kemunculan_nilai = temp
+            index = i
+
+    modus = data[index]
+    print("\nNilai Modus Adalah\t\t : ", modus)
+    print()
+
+getMean()
+getMedian()
+getModus()
